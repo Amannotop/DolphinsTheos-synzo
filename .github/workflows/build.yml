@@ -28,7 +28,7 @@ jobs:
       - name: Find deb
         id: find-deb
         run: |
-          echo "deb_path=$(find packages -name '*.deb' 2>/dev/null | head -1)" >> $GITHUB_OUTPUT
+          echo "deb_path=$(find .theos/pkg -name '*.deb' 2>/dev/null | head -1)" >> $GITHUB_OUTPUT
 
       - name: Upload deb
         if: steps.find-deb.outputs.deb_path != ''
@@ -57,7 +57,7 @@ jobs:
       - name: Find dylib
         id: find-dylib
         run: |
-          echo "dylib_path=$(find theos/obj -name '*.dylib' 2>/dev/null | head -1)" >> $GITHUB_OUTPUT
+          echo "dylib_path=$(find .theos/obj -name '*.dylib' 2>/dev/null | head -1)" >> $GITHUB_OUTPUT
 
       - name: Upload dylib
         if: steps.find-dylib.outputs.dylib_path != ''
