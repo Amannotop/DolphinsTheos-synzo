@@ -80,7 +80,7 @@ _write(address, reinterpret_cast<void *>(&data), sizeof(T));
 }
 
 template<typename T> T *ReadArr(kaddr address, unsigned int size) {
-T data[size];
+T *data = new T[size];
 T *ptr = data;
 _read(address, reinterpret_cast<void *>(ptr), (sizeof(T) * size));
 return ptr;

@@ -14,6 +14,7 @@ extern "C" {
 
 #include <stdbool.h>
 #include <stdint.h>
+#include <stddef.h>
 
 void log_set_level(int level);
 void log_switch_to_syslog();
