@@ -213,7 +213,7 @@ INI *ini_load(char *path) {
     
     /* read in file */
     fseek(f, 0, SEEK_SET);
-    char data[size + 1];
+    char *data = new char[size + 1];
     fread(data, 1, size, f);
     data[size] = '\0';
     
@@ -230,16 +230,17 @@ INI *ini_load(char *path) {
         if ((section_begin = strchr(r, '[')) && section_begin < line_end && section_begin < strchr(r, '=')) {
             /* extract section */
             int l = (int)(strchr(r, ']') - section_begin);
-            char section[l];
+            char *section = new char[l];
             strncpy(section, section_begin + 1, l);
             strchr(section, ']')[0] = '\0';
             
             /* store */
             section_t *s = add_section(ini, section);
             current_section = s->name;
+            delete[] section;
         } else if ((item_begin = strchr(r, '=')) && item_begin < line_end) {
             /* extract item */
-            char item[item_begin - r];
+            char *item = new char[item_begin - r];
             while (r[0] == ' ' || r[0] == '\t') {
                 r++;
             }
@@ -251,7 +252,7 @@ INI *ini_load(char *path) {
             item[pad_end] = '\0';
             
             /* extract value */
-            char value[line_end - item_begin];
+            char *value = new char[line_end - item_begin];
             r = item_begin + 1;
             while (r[0] == ' ' || r[0] == '\t') {
                 r++;
@@ -261,9 +262,12 @@ INI *ini_load(char *path) {
             
             /* store */
             add_item(ini, current_section, item, value);
+            delete[] item;
+            delete[] value;
         }
         r = line_end + 1;
     }
+    delete[] data;
     fclose(f);
     return ini;
 }
