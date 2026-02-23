@@ -2,7 +2,7 @@
 # Build fixes by Synzo (@synzo)
 # GitHub: https://github.com/synzo
 
-export THEOS=/Users/synzo/theos
+export THEOS ?= $(HOME)/theos
 
 ARCHS = arm64
 
