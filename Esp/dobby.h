@@ -8,13 +8,13 @@
 #define DobbyInstrument b71e27bca2c362de90c1034f19d839f9
 #endif
 
-#ifdef __cplusplus
-extern "C" {
-#endif
-
 #include <stdbool.h>
 #include <stdint.h>
 #include <stddef.h>
+
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 void log_set_level(int level);
 void log_switch_to_syslog();
