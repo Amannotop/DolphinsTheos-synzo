@@ -17,20 +17,18 @@ jobs:
       - name: Setup Theos
         run: |
           brew install make
-          git clone --recursive https://github.com/theos/theos.git $THEOS
-        env:
-          THEOS: $HOME/theos
+          git clone --recursive https://github.com/theos/theos.git ./theos
 
       - name: Build JB (deb)
         run: |
-          export THEOS=$HOME/theos
+          export THEOS=$PWD/theos
           make clean
           make
 
       - name: Find deb
         id: find-deb
         run: |
-          echo "deb_path=$(find .theos/pkg -name '*.deb' 2>/dev/null | head -1)" >> $GITHUB_OUTPUT
+          echo "deb_path=$(find packages -name '*.deb' 2>/dev/null | head -1)" >> $GITHUB_OUTPUT
 
       - name: Upload deb
         if: steps.find-deb.outputs.deb_path != ''
@@ -48,20 +46,18 @@ jobs:
       - name: Setup Theos
         run: |
           brew install make
-          git clone --recursive https://github.com/theos/theos.git $THEOS
-        env:
-          THEOS: $HOME/theos
+          git clone --recursive https://github.com/theos/theos.git ./theos
 
       - name: Build Non-JB (dylib)
         run: |
-          export THEOS=$HOME/theos
+          export THEOS=$PWD/theos
           make clean
           make NONJB=1
 
       - name: Find dylib
         id: find-dylib
         run: |
-          echo "dylib_path=$(find .theos/obj -name '*.dylib' 2>/dev/null | head -1)" >> $GITHUB_OUTPUT
+          echo "dylib_path=$(find theos/obj -name '*.dylib' 2>/dev/null | head -1)" >> $GITHUB_OUTPUT
 
       - name: Upload dylib
         if: steps.find-dylib.outputs.dylib_path != ''
