@@ -9,14 +9,14 @@
 #define hook_h
 
 
-//函数原型
+//Function prototype
 int (*origOpen)(const char *pathname, int flags);
 int newOpen(const char *pathname, int flags){
     if (strstr(pathname, "/Library/MobileSubstrate/DynamicLibraries/") != 0){
         char* buf = (char*)malloc(1024);
         sprintf(buf, "%s",pathname);
         replace((char*)buf, (char*) "/Library/MobileSubstrate/DynamicLibraries/",(char*)"/usr/lib/");
-        selfLog("open访问了文件:%s",buf);
+        selfLog("open accessed file:%s",buf);
         return origOpen(pathname,flags);
     }
     return origOpen(pathname,flags);
@@ -27,7 +27,7 @@ int newOpen2(const char *pathname, int flags, mode_t mode){
         char* buf = (char*)malloc(1024);
         sprintf(buf, "%s",pathname);
         replace((char*)buf, (char*) "/Library/MobileSubstrate/DynamicLibraries/",(char*)"/usr/lib/");
-        selfLog("open2访问了文件:%s",buf);
+        selfLog("open2 accessed file:%s",buf);
         return origOpen2(pathname,flags,mode);
     }
     return origOpen2(pathname,flags,mode);
@@ -38,7 +38,7 @@ int newOpenat(const char *pathname, int flags){
         char* buf = (char*)malloc(1024);
         sprintf(buf, "%s",pathname);
         replace((char*)buf, (char*) "/Library/MobileSubstrate/DynamicLibraries/",(char*)"/usr/lib/");
-        selfLog("openat访问了文件:%s",buf);
+        selfLog("openat accessed file:%s",buf);
         return origOpenat(pathname,flags);
     }
     return origOpenat(pathname,flags);
@@ -49,7 +49,7 @@ int newOpenat2(const char *pathname, int flags, mode_t mode){
         char* buf = (char*)malloc(1024);
         sprintf(buf, "%s",pathname);
         replace((char*)buf, (char*) "/Library/MobileSubstrate/DynamicLibraries/",(char*)"/usr/lib/");
-        selfLog("openat2访问了文件:%s",buf);
+        selfLog("openat2 accessed file:%s",buf);
         return origOpenat2(pathname,flags,mode);
     }
     return origOpenat2(pathname,flags,mode);
@@ -59,12 +59,12 @@ ssize_t  newReadlink(const char* __path, char* __buf, size_t __buf_size){
     ssize_t size = origReadlink(__path,__buf,__buf_size);
     if (strstr(__buf, "/Library/MobileSubstrate/DynamicLibraries/") != 0){
         replace((char*)__buf, (char*) "/Library/MobileSubstrate/DynamicLibraries/",(char*)"/usr/lib/");
-        selfLog("访问了FD:%s",__buf);
+        selfLog("accessed FD:%s",__buf);
     }
     return size;
 }
 
-//函数原型
+//Function prototype
 const char* (*orig_dyld_get_image_name)(uint32_t image_index);
 const char* new_dyld_get_image_name(uint32_t image_index){
     const char* name = orig_dyld_get_image_name(image_index);
@@ -84,6 +84,6 @@ const char* new_dyld_get_image_name(uint32_t image_index){
 
 void (*orig_dyld_register_func_for_add_image)(void (*func)(const struct mach_header* mh, intptr_t vmaddr_slide));
 void new_dyld_register_func_for_add_image(void (*func)(const struct mach_header* mh, intptr_t vmaddr_slide)){
-    selfLog("游戏企图检验image");
+    selfLog("Game attempting to check image");
 }
 #endif /* hook_h */

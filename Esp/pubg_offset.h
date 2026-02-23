@@ -27,7 +27,7 @@ namespace PubgOffset {
     namespace ULevelParam {
         //LineBatchComponenet* PersistentLineBatcher
         int ObjectArrayOffset = 0xA0;
-        //成员数量
+        //Member count
         int ObjectCountOffset = 0xA8;
     }
 

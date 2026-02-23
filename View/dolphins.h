@@ -6,28 +6,28 @@
 //
 #include "imgui/imgui.h"
 
-//静态数据线程
+//Static data thread
 void *readStaticData(void *);
 
-//获取帧数据
+//Get frame data
 void readFrameData(ImVec2 screenSize,std::vector<PlayerData> &playerDataList, std::vector<MaterialData> &materialDataList);
 
-//自瞄
+//Aimbot
 void *silenceAimbot(void *);
     
-//掩体判断
+//Line of Sight
 bool isCoordVisibility(ImVec3 coord);
-//是否在烟雾内
+//In smoke
 bool isOnSmoke(ImVec3 coord);
 
-//取人物名字
+//Get player name
 char* getPlayerName(uintptr_t addr);
 
-//取对象类型名
+//Get object type name
 char* getClassName(int classId);
 char* statusName(int statusId);
-//取骨骼点坐标
+//Get bone coord
 ImVec3 getBone(uintptr_t human, uintptr_t bones, int part);
 
-//取骨骼点坐标(屏幕)
+//Get bone screen coord
 bool getBone2d(MinimalViewInfo pov,ImVec2 screen, uintptr_t human, uintptr_t bones, int part,ImVec2 &buf);

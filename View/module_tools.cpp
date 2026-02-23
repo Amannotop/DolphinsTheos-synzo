@@ -8,7 +8,7 @@
 #include "module_tools.h"
 #include <math.h>
 
-#pragma mark - 坐标系转换
+\/pragma mark - Coordinate conversion
 ImVec3 matrixToVector(Ue4Matrix matrix) {
     return ImVec3(matrix[3][0], matrix[3][1], matrix[3][2]);
 }
@@ -123,7 +123,7 @@ ImVec2 worldToScreen(ImVec3 worldLocation, MinimalViewInfo camViewInfo, ImVec2 s
     screenCoord.y = (screenCenter.y - vTransformed.y * (screenCenter.x / tanf(camViewInfo.fov * ((float) M_PI / 360.0f))) / vTransformed.z);
     return screenCoord;
 }
-//雷达
+//Radar
 float getAngleDifference(float angle1, float angle2) {
     float diff = fmod(angle2 - angle1 + 180, 360) - 180;
     return diff < -180 ? diff + 360 : diff;
@@ -178,7 +178,7 @@ ImVec2 rotateAngleView(ImVec3 selfCoord, ImVec3 targetCoord) {
 bool isRecycled(const char *name) {
     return strstr(name, "ecycled") != 0;
 }
-//手持武器
+//Held weapon
 MaterialStruct isWeapon(const char *name) {
     if (strstr(name, "Sniper_QBU") != 0) {
         return {Sniper, 0, "[Sniper Gun]QBU" };
@@ -290,7 +290,7 @@ MaterialStruct isWeapon(const char *name) {
     
     return {-1, -1, "NULL"};
 }
-//地面显示
+//Ground display
 MaterialStruct isMaterial(const char *name) {
      if (strstr(name, "Motorcycle_") != 0) {
          return {Vehicle, 0, "motorcycle"};
@@ -509,7 +509,7 @@ MaterialStruct isMaterial(const char *name) {
      return {-1, -1, "NULL"};
 }
 // inside the box
-//盒子内
+//In box
 MaterialStruct isBoxMaterial(int box_goods_id) {
     if (box_goods_id == 601006) {
         return {Drug, 4, "[Medicine] Medical Box"};

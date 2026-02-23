@@ -34,18 +34,18 @@
     return self;
 }
 
-// 点击事件
+// Click event
 - (void)iconOnClick {
     self.moduleControl->menuStatus = !self.moduleControl->menuStatus;
 }
 
-// 按下
+// Press
 - (void)touchesBegan:(NSSet*)touches withEvent:(UIEvent*)event {
     CGPoint pt = [[touches anyObject] locationInView:self];
     _startLocation = pt;
     [[self superview] bringSubviewToFront:self];
 }
-// 移动
+// Move
 - (void)touchesMoved:(NSSet*)touches withEvent:(UIEvent*)event {
     CGPoint pt = [[touches anyObject] locationInView:self];
     float dx = pt.x - _startLocation.x;
@@ -76,7 +76,7 @@
     
     self.didMoveLocation = CGPointMake(self.left, self.superview.height - self.bottom);
 }
-// 抬起
+// Release
 - (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     self.didMoveLocation = CGPointMake(self.left, self.superview.height - self.bottom);
 }

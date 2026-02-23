@@ -14,6 +14,6 @@
 #include <stdarg.h>
 
 void selfLog(const char* format,...);
-//将串s1中的子串s2替换成串s3
+//Replace substring s2 in s1 with s3
 char* replace(char*s1,char*s2,char*s3=NULL);
 #endif /* log_hpp */

@@ -38,13 +38,13 @@ float calcTextSize(const char *text, float font_size) {
 void setDarkTheme() {
     ImGuiStyle *style = &ImGui::GetStyle();
     /*
-    style->WindowRounding = 12.0f;//窗口圆角
-    style->WindowBorderSize = 1.0f;//窗口边框
-    style->FramePadding = ImVec2(16.0f, 16.0f);//组件内边距
-    style->WindowPadding = ImVec2(16.0f, 16.0f);//窗口内边距
+    style->WindowRounding = 12.0f;//Window Rounding
+    style->WindowBorderSize = 1.0f;//Window Border
+    style->FramePadding = ImVec2(16.0f, 16.0f);//Frame Padding
+    style->WindowPadding = ImVec2(16.0f, 16.0f);//Window Padding
     
-    style->ScrollbarSize = 64.0f;//滚动条大小
-    style->ScrollbarRounding = 8.0f;//滚动条大小
+    style->ScrollbarSize = 64.0f;//Scrollbar size
+    style->ScrollbarRounding = 8.0f;//Scrollbar size
     style->FrameRounding = 12.0f;
     style->FrameBorderSize = 1.0f;
     style->ItemSpacing = ImVec2(16.0f, 16.0f);
@@ -124,13 +124,13 @@ void setDarkTheme() {
     colors[ImGuiCol_ModalWindowDimBg] = ImColor(224, 0, 255, 255).Value;
 */
 
-    style->WindowRounding = 12.0f;//窗口圆角
-    style->WindowBorderSize = 1.0f;//窗口边框
-    style->FramePadding = ImVec2(16.0f, 16.0f);//组件内边距
-    style->WindowPadding = ImVec2(16.0f, 16.0f);//窗口内边距
+    style->WindowRounding = 12.0f;//Window Rounding
+    style->WindowBorderSize = 1.0f;//Window Border
+    style->FramePadding = ImVec2(16.0f, 16.0f);//Frame Padding
+    style->WindowPadding = ImVec2(16.0f, 16.0f);//Window Padding
     
-    style->ScrollbarSize = 64.0f;//滚动条大小
-    style->ScrollbarRounding = 8.0f;//滚动条大小
+    style->ScrollbarSize = 64.0f;//Scrollbar size
+    style->ScrollbarRounding = 8.0f;//Scrollbar size
     style->FrameRounding = 12.0f;
     style->FrameBorderSize = 1.0f;
     style->ItemSpacing = ImVec2(16.0f, 16.0f);

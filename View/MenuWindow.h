@@ -26,17 +26,17 @@ NS_ASSUME_NONNULL_BEGIN
 - (instancetype)initWithFrame:(ModuleControl*)control;
 
 -(void)setOverlayView:(OverlayView*)ov;
-//绘制菜单窗口
+//Draw menu window
 -(void)drawMenuWindow;
-//显示系统信息页面
+//Show system info page
 -(void)showSystemInfo;
-//人物功能控制
+//Player function control
 -(void) showPlayerControl;
-//物资功能控制
+//Material function control
 -(void) showMaterialControl;
-//自瞄控制
+//Aimbot control
 -(void) showAimbotControl;
-//读Ini配置
+//Read Ini config
 -(void)readIniConfig;
 
 @end

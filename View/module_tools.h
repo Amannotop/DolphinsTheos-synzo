@@ -2,7 +2,7 @@
 //  CustomStrcut.h
 //  Dolphins
 //
-//  Created by 明笙 on 2022/4/24.
+//  Created by on 2022/4/24.
 //
 #include <string>
 #ifndef CustomStrcut_h
@@ -12,15 +12,15 @@
 enum SystemStatus {
     //
     WaitingResponse,
-    //系统错误
+    //System error
     SystemError,
-    //需要更新
+    //Need update
     NeedUpdate,
-    //登录失败
+    //Login failed
     LoginFailure,
-    //服务器校验失败
+    //Server check failed
     CheckFailure,
-    //状态正常
+    //Status normal
     TransmissionNormal,
 };
 
@@ -57,49 +57,49 @@ struct MainSwitch {
 
 
 struct PlayerSwitch {
-    //方框
+    //Box
     bool boxStatus;
-    //骨骼
+    //Bone
     bool boneStatus;
-    //天线
+    //Antenna
     bool lineStatus;
-    //信息
+    //Info
     bool infoStatus;
-    //雷达
+    //Radar
     bool radarStatus;
-    //背敌
+    //Back enemy
     bool backStatus;
-    //手持贴图
+    //Held texture
     bool SCStatus;
-    //手持文字
+    //Held text
     bool SCWZStatus;
-    //物资贴图
+    //Material texture
     bool WZStatus;
-    //物资文字
+    //Material text
     bool WZWZStatus;
-    //经典
+    //Classic
     bool jdStatus;
-    //简洁
+    //Simple
     bool jjStatus;
-    //雷达大小
+    //Radar size
     float radarSize;
-    //雷达坐标
+    //Radar coord
     ImVec2 radarCoord;
 };
 
 
 struct AimbotController {
-    //倒地不瞄
+    //Dont aim knocked
     bool fallNotAim;
-    //自瞄启动类型
+    //Aimbot trigger type
     int aimbotMode;
-    //自瞄部位
+    //Aimbot body part
     int aimbotParts;
-    //自瞄半径
+    //Aimbot radius
     float aimbotRadius;
     //
     bool showAimbotRadius;
-    //自瞄强度
+    //Aimbot intensity
     float aimbotIntensity;
     
     float distance;
@@ -231,28 +231,28 @@ Ue4Matrix transformToMatrix(Ue4Transform transform);
 Ue4Matrix rotatorToMatrix(ImVec3 rotation);
 
 ImVec2 worldToScreen(ImVec3 worldLocation, MinimalViewInfo camViewInfo, ImVec2 screenCenter);
-//换算角度 0-360
+//Convert angle 0-360
 float getAngleDifference(float angle1, float angle2);
-//正数负数互转
+//Positive negative
 float change(float num);
-//计算2D距离
+//Calculate 2D distance
 float get2dDistance(ImVec2 self, ImVec2 object);
-//计算3D距离
+//Calculate 3D distance
 float get3dDistance(ImVec3 self, ImVec3 object, float divice);
 
-//旋转指定角度2D坐标
+//Rotate angle 2D coord
 ImVec2 rotateCoord(float angle, ImVec2 coord);
-//计算3D坐标2d角度
+//Calculate 3D to 2D angle
 float rotateAngle(ImVec3 selfCoord, ImVec3 targetCoord);
-//计算3D坐标3D角度
+//Calculate 3D to 3D angle
 ImVec2 rotateAngleView(ImVec3 selfCoord, ImVec3 targetCoord);
-//判断物资是否被摄取
+//Check material visible
 bool isRecycled(const char *name);
-//是否为武器
+//Is weapon
 MaterialStruct isWeapon(const char *name);
-//是否为物资
+//Is material
 MaterialStruct isMaterial(const char *name);
-//是否为物资(盒子)
+//Is material box
 MaterialStruct isBoxMaterial(int box_goods_id);
 #endif /* CustomStrcut_h */
 

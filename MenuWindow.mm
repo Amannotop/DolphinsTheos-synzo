@@ -18,7 +18,7 @@ INI*config;
 
 const char *optionItemName[] = {" Home", " Esp", " Items", " Aimbot"};
 int optionItemCurrent = 0;
-//自瞄部位文本
+//Aimbot body part text
 int aimbotIntensity; //cường độ
 //const char *aimbotIntensityText[] = {"So Low","Low", "Normal", "High", "So High", "Lock High", "Lock to dead"};
 const char *aimbotIntensityText[] = {"So Low","Low", "Normal", "High", "So High"};
@@ -31,18 +31,18 @@ OverlayView *overlayView;
 
 - (instancetype)initWithFrame:(ModuleControl*)control {
     self.moduleControl = control;
-    //获取Documents目录路径
+    //Get Documents directory path
     NSString *documentsDirectory = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents"];
-    //初始化文件管理器
+    //Initialize file manager
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    //拼接文件路径
+    //Concatenate file path
     NSString *filePath = [documentsDirectory stringByAppendingPathComponent:@"dolphine.ini"];
-    //文件不存在
+    //File does not exist
     if(![fileManager fileExistsAtPath:filePath]){
-        //创建文件
+        //Create file
         [fileManager createFileAtPath:filePath contents:[NSData data] attributes:nil];
     }
-    //获取ini文件数据
+    //Get ini file data
     config = ini_load((char*)filePath.UTF8String);
     
     return [super init];
@@ -50,7 +50,7 @@ OverlayView *overlayView;
 
 -(void)setOverlayView:(OverlayView*)ov{
     overlayView = ov;
-    //读配置项
+    //Read config item
     [self readIniConfig];
 
 
@@ -94,7 +94,7 @@ char* bonios = (char*) [[NSString stringWithFormat:NSSENCRYPT("TRAXERIOSHACK.GL 
         if(g.NavWindow == NULL){
             self.moduleControl->menuStatus = !self.moduleControl->menuStatus;
         }
-        //设置下一个控件的宽度
+        //Set next control width
         ImGui::BeginChild("##optionLayout", {calcTextSize("otionlayout") + 200.0f, 0}, false, ImGuiWindowFlags_None);
         for (int i = 0; i < 4; ++i) {
             if (optionItemCurrent != i) {
@@ -111,7 +111,7 @@ char* bonios = (char*) [[NSString stringWithFormat:NSSENCRYPT("TRAXERIOSHACK.GL 
             }
         }
         ImGui::EndChild();
-        //同一行
+        //Same line
         ImGui::SameLine();
         ImGui::BeginChild("##surfaceLayout", {0, 0}, false, ImGuiWindowFlags_None);
         switch (optionItemCurrent) {
@@ -425,36 +425,36 @@ ImGui::TextColored(ImColor(125, 165, 62),"Delay frame .  %.3f ms/frame (%.1f FPS
             overlayView.preferredFramesPerSecond = 60;
             break;
     }
-    //主开关
+    //Main switch
     self.moduleControl->mainSwitch.playerStatus = configManager::readBoolean(config,"mainSwitch", "player", false);
     self.moduleControl->mainSwitch.materialStatus = configManager::readBoolean(config,"mainSwitch", "material", false);
     self.moduleControl->mainSwitch.aimbotStatus = configManager::readBoolean(config,"mainSwitch", "aimbot", false);
-    //人物开关
+    //Player switch
     for (int i = 0; i < 10; ++i) {
         std::string str = "playerSwitch_" + std::to_string(i);
         *((bool *) &self.moduleControl->playerSwitch + sizeof(bool) * i) = configManager::readBoolean(config,"playerSwitch", str.c_str(), false);
     }
-    //雷达坐标
+    //Radar coord
     self.moduleControl->playerSwitch.radarSize = configManager::readFloat(config,"playerSwitch", "radarSize", 70);
     self.moduleControl->playerSwitch.radarCoord.x = configManager::readFloat(config,"playerSwitch", "radarX", 500);
     self.moduleControl->playerSwitch.radarCoord.y = configManager::readFloat(config,"playerSwitch", "radarY", 500);
-    //物资开关
+    //Material switch
     for (int i = 0; i < All; ++i) {
         std::string str = "materialSwitch_" + std::to_string(i);
         self.moduleControl->materialSwitch[i] = configManager::readBoolean(config,"materialSwitch", str.c_str(), false);
     }
-    //倒地不瞄
+    //Dont aim at knocked
     self.moduleControl->aimbotController.fallNotAim = configManager::readBoolean(config,"aimbotControl", "fall", false);
     self.moduleControl->aimbotController.showAimbotRadius = configManager::readBoolean(config,"aimbotControl", "showRadius", true);
     self.moduleControl->aimbotController.aimbotRadius = configManager::readFloat(config,"aimbotControl", "radius", 200);
     
     self.moduleControl->aimbotController.smoke = configManager::readBoolean(config,"aimbotControl", "smoke", true);
     
-    //自瞄模式
+    //Aimbot mode
     self.moduleControl->aimbotController.aimbotMode = configManager::readInteger(config,"aimbotControl", "mode", 3);
-    //自瞄部位
+    //Aimbot body part
     self.moduleControl->aimbotController.aimbotParts = configManager::readInteger(config,"aimbotControl", "parts", 2);
-    //自瞄强度
+    //Aimbot intensity
     aimbotIntensity = configManager::readInteger(config,"aimbotControl", "intensity", 2);
     switch (aimbotIntensity) {
         case 0:
@@ -479,7 +479,7 @@ ImGui::TextColored(ImColor(125, 165, 62),"Delay frame .  %.3f ms/frame (%.1f FPS
             self.moduleControl->aimbotController.aimbotIntensity = 1.2f;
             break;
     }
-    //自瞄距离
+    //Aimbot distance
     self.moduleControl->aimbotController.distance = configManager::readFloat(config,"aimbotControl", "distance", 70);
 }
 

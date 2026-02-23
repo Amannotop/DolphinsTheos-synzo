@@ -15,7 +15,7 @@
     self.menuWindow = menu;
     
     if (self = [super initWithFrame:frame]) {
-        //清空颜色
+        //Clear color
         self.backgroundColor = [UIColor clearColor];
         self.device = MTLCreateSystemDefaultDevice();
         if (!self.device) {
@@ -53,9 +53,9 @@
 
 - (void)drawInMTKView:(MTKView *)view {
     
-    //清除颜色
+    //Clear color
     view.clearColor = MTLClearColorMake(0.0f, 0.0f, 0.0f, 0.0f);
-    //计算fps
+    //Calculate fps
     struct timespec current_timespec;
     static double g_Time = 0.0;
     clock_gettime(CLOCK_MONOTONIC, &current_timespec);
@@ -76,7 +76,7 @@
         }
         [self.drawWindow drawDrawWindow];
 
-        //渲染
+        //Render
         ImGui::Render();
         ImDrawData *drawData = ImGui::GetDrawData();
         id <MTLRenderCommandEncoder> renderEncoder = [commandBuffer renderCommandEncoderWithDescriptor:renderPassDescriptor];
@@ -98,7 +98,7 @@
     UIView *hitView = [super hitTest:point withEvent:event];
     
     if (hitView == self && !self.moduleControl->menuStatus) {
-        return nil; // 此处返回空即不相应任何事件
+        return nil; // Return nil here to not respond to any events
     }
     return hitView;
 }
