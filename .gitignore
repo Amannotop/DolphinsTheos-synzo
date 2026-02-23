@@ -1,0 +1,7 @@
+.theos/
+*.o
+*.dylib
+*.deb
+*.dSYM/
+*.xcodeproj/
+.DS_Store

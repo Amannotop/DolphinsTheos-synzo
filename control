@@ -1,0 +1,9 @@
+Package: com.synzo.pubgglobal
+Name: PubgGlobal
+Depends: mobilesubstrate
+Version: 0.0.2
+Architecture: iphoneos-arm
+Description: PUBG Mobile Cheat - All Versions
+Maintainer: Synzo
+Author: Synzo
+Section: Tweaks
