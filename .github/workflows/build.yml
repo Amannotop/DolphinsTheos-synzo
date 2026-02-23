@@ -16,7 +16,7 @@ jobs:
 
       - name: Setup Theos
         run: |
-          brew install make
+          brew install make ldid
           git clone --recursive https://github.com/theos/theos.git ./theos
 
       - name: Build JB (deb)
@@ -45,7 +45,7 @@ jobs:
 
       - name: Setup Theos
         run: |
-          brew install make
+          brew install make ldid
           git clone --recursive https://github.com/theos/theos.git ./theos
 
       - name: Build Non-JB (dylib)
