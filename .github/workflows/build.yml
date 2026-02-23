@@ -23,7 +23,7 @@ jobs:
         run: |
           export THEOS=$PWD/theos
           make clean
-          make
+          make package
 
       - name: Find deb
         id: find-deb
