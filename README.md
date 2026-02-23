@@ -2,9 +2,106 @@
 
 A Theos-based tweak for PUBG Mobile with menu overlay and gameplay features.
 
-## Credits
+## Download Ready-made Files
 
-- **Developer**: [Synzo](https://github.com/synzo) (@synzo)
+**No need to build! Download directly:**
+
+| Version | File | Download |
+|---------|------|----------|
+| Jailbreak | .deb | [Download from GitHub Actions](./actions/workflows/build.yml) |
+| Non-Jailbreak | .dylib | [Download from GitHub Actions](./actions/workflows/build.yml) |
+
+**How to download:**
+1. Go to [Actions](./actions/workflows/build.yml)
+2. Click on a successful workflow run
+3. Download from **Artifacts**
+
+---
+
+## How to Build (For Developers)
+
+Want to modify the code and build yourself? Follow these simple steps:
+
+### Method 1: Build on Phone (Easiest!)
+
+1. **Open this page on your phone browser**
+   - Go to: https://github.com/Amannotop/DolphinsTheos-synzo
+
+2. **Run the build**
+   - Tap on **Actions** tab
+   - Tap on **Build Dolphins**
+   - Tap **Run workflow** → **Run workflow**
+
+3. **Download your file**
+   - Wait for build to finish (~3-5 minutes)
+   - Scroll down to **Artifacts**
+   - Tap to download:
+     - **Dolphins-jb.deb** (for jailbroken iPhone)
+     - **Dolphins-nonjb.dylib** (for non-jailbroken iPhone)
+
+### Method 2: Build on PC/Mac
+
+```bash
+# Clone the repo
+git clone https://github.com/Amannotop/DolphinsTheos-synzo.git
+cd DolphinsTheos-synzo
+
+# Install Theos
+git clone --recursive https://github.com/theos/theos.git ./theos
+
+# Build (Jailbreak version)
+export THEOS=$PWD/theos
+make clean
+make package
+
+# OR Build (Non-JB version)
+make clean
+make NONJB=1
+```
+
+---
+
+## How to Install
+
+### For Jailbroken iPhone:
+1. Transfer `.deb` file to your iPhone
+2. Use Filza or SSH to install:
+   ```bash
+   dpkg -i Dolphins-jb.deb
+   ```
+3. Respring
+
+### For Non-Jailbroken iPhone:
+1. Install using TrollStore or your preferred non-jb loader
+2. Transfer `.dylib` to `/Library/MobileSubstrate/DynamicLibraries/`
+3. Create `.plist` file in same folder
+
+---
+
+## How to Update the Code
+
+Want to modify something and rebuild?
+
+1. **On GitHub website:**
+   - Go to the file you want to edit
+   - Click the pencil icon (edit)
+   - Make changes
+   - Click **Commit changes**
+
+2. **Or on your PC:**
+   ```bash
+   # Clone, edit, push
+   git clone https://github.com/Amannotop/DolphinsTheos-synzo.git
+   # ... make your edits ...
+   git add .
+   git commit -m "your changes"
+   git push
+   ```
+
+3. **Build again:**
+   - Go to Actions → Run workflow → Download new file
+
+---
 
 ## Supported Games
 
@@ -15,123 +112,16 @@ A Theos-based tweak for PUBG Mobile with menu overlay and gameplay features.
 | PUBG Mobile KR | com.pubg.krmobile |
 | PUBG Mobile VN | com.vng.pubgmobile |
 
-## Requirements
+---
 
-### For Building
+## Credits
 
-- **macOS** with Xcode Command Line Tools
-- **OR** Windows (WSL2 with Ubuntu)
-- **OR** Linux (Ubuntu/Debian)
+- **Developer**: [Synzo](https://github.com/synzo) (@synzo)
 
-### For Installation
+---
 
-- Jailbroken iOS device (for .deb)
-- TrollStore/Non-JB loader (for .dylib)
+## Important Notes
 
-## Installation
-
-### Option 1: Pre-built .deb (Jailbroken)
-
-1. Transfer `com.synzo.pubgglobal_0.0.2_iphoneos-arm.deb` to your iOS device
-2. Install via Filza or SSH:
-   ```bash
-   dpkg -i com.synzo.pubgglobal_0.0.2_iphoneos-arm.deb
-   ```
-3. Respring
-
-### Option 2: Build from Source
-
-#### 1. Install THEOS
-
-```bash
-# macOS
-git clone --depth 1 https://github.com/theos/theos.git ~/theos
-export THEOS=/Users/synzo/theos && ~/theos/bin/update-theos
-brew install ldid
-
-# WSL/Linux
-# See BUILD.md for detailed instructions
-```
-
-#### 2. Clone & Build
-
-```bash
-# Clone this repository
-git clone <repository-url>
-cd dolphins
-
-# Run interactive build
-./build.sh
-
-# Select build type:
-# [1] JB (Jailbreak) - Creates .deb
-# [2] Non-JB - Creates .dylib
-```
-
-#### 3. Manual Build Commands
-
-```bash
-# JB Build (Jailbreak)
-make clean && make
-
-# Non-JB Build
-make clean && make NONJB=1
-
-# Create package
-make package
-```
-
-## Output Files
-
-| Build Type | Output |
-|------------|--------|
-| JB | `packages/com.synzo.pubgglobal_0.0.2_iphoneos-arm.deb` |
-| Non-JB | `.theos/obj/Dolphins.dylib` |
-
-## Project Structure
-
-```
-dolphins/
-├── BUILD.md              # Detailed build guide
-├── build.sh              # Interactive build script
-├── Makefile              # Theos makefile
-├── control               # Package control file
-├── Dolphins.plist        # Bundle filter (game targets)
-├── Dolphins.mm           # Main source
-├── MenuWindow.mm         # Menu source
-├── View/                 # UI components
-├── Esp/                  # ESP & offsets
-├── imgui/                # ImGui library
-├── SCLAlertView/         # Alert views
-├── FCUUID/               # UUID generation
-├── Internet/             # Network utilities
-└── GWMProgressHUD/       # Progress HUD
-```
-
-## Troubleshooting
-
-### "ldid: command not found"
-```bash
-# macOS
-brew install ldid
-
-# WSL/Linux
-# Build from source: https://github.com/ProcursusTeam/ldid
-```
-
-### Build fails
-- Make sure THEOS is installed correctly
-- Run: `export THEOS=~/theos` before building
-
-### Tweak not loading
-- Check if game is supported (see bundle IDs)
-- Verify installation succeeded
-
-## License
-
-This project is for educational purposes only. Use at your own risk.
-
-## Support
-
-- For build issues: Create an issue on GitHub
-- For game-specific issues: May need updated offsets for new game versions
+- This is for educational purposes only
+- Use at your own risk
+- May need updated offsets for new game versions
